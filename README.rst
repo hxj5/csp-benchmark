@@ -2,7 +2,7 @@
 csp-benchmark
 =============
 
-Benchmarking of `cellsnp-lite`_.
+Benchmarking of cellsnp-lite_.
 
-.. cellsnp_lite: https://github.com/single-cell-genetics/cellsnp-lite
+.. _cellsnp-lite: https://github.com/single-cell-genetics/cellsnp-lite
 
