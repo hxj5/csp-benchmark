@@ -6,7 +6,7 @@ Benchmarking requires all dependent datasets to be well prepared beforehand.
 All datasets should be downloaded to ``DATA_DIR``. Its value could be specified
 in `config.sh`_. Please make sure that the ``DATA_DIR`` should have the same 
 directory structure and file names as the `data dir`_ since many file names 
-are hard-encoded in scripts.
+are hard-coded in scripts.
 
 Preparation
 -----------
@@ -116,9 +116,9 @@ genome1K.phase3.SNP_AF5e2.chr1toX.hg19.snp.uniq.vcf.gz.
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``cellranger.hg19.3.0.0.fa`` (~3.0G). It's the fasta file for the 
-human genome reference hg19. The file was pre-compiled and packaged in
-a tar file `refdata-cellranger-hg19-3.0.0.tar.gz`_ (~10.4G) by 
-10X Genomics. It was downloaded, unpacked and then renamed from 
+human genome reference hg19. The file was pre-compiled and packaged by 
+10X Genomics into a tar file `refdata-cellranger-hg19-3.0.0.tar.gz`_
+(~10.4G). It was downloaded, unpacked and then renamed from 
 ``fasta/genome.fa`` to cellranger.hg19.3.0.0.fa.
 
 .. _refdata-cellranger-hg19-3.0.0.tar.gz: http://cf.10xgenomics.com/supp/cell-exp/refdata-cellranger-hg19-3.0.0.tar.gz
@@ -129,7 +129,7 @@ Notes
 All datasets should be downloaded to ``DATA_DIR``. Its value could be specified
 in `config.sh`_. Please make sure that the ``DATA_DIR`` should have the same
 directory structure and file names as the `data dir`_ since many file names
-are hard-encoded in scripts.
+are hard-coded in scripts.
 
 
 .. _config.sh: https://github.com/hxj5/csp-benchmark/blob/master/config.sh

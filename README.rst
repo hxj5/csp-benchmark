@@ -26,13 +26,19 @@ This repo includes six runs in dir `run`_, each is for a specific benchmarking
 task. A wrapper script `benchmark.sh`_ is provided to make it easier to run 
 single task.
 
+To use the repo, please first clone it to your local machine,
+
+.. code-block:: bash
+
+  git clone https://github.com/hxj5/csp-benchmark.git
+
 1. Preparation
 ~~~~~~~~~~~~~~
 
 Before running any benchmarking task, all dependent softwares and datasets
 should have been installed or well prepared. To achieve this, please firstly
 check and modify `config.sh`_ and then follow the instructions in 
-`doc/software.rst`_ and `doc/dataset.rst`.
+`doc/software.rst`_ and `doc/dataset.rst`_.
 
 2. Run benchmark task
 ~~~~~~~~~~~~~~~~~~~~~
