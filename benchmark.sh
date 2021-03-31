@@ -11,7 +11,7 @@ if [ $# -lt 2 ]; then
   echo "" >&2
   echo "This script is a wrapper for benchmarking cellsnp-lite" >&2
   echo "" >&2
-  echo "Usage: $0 <mode> <actiion>" >&2
+  echo "Usage: $0 <mode> <action>" >&2
   echo "" >&2
   echo "<mode> is the target mode for benchmarking, could be one of:" >&2
   echo "  1a-demuxlet      Demuxlet dataset with given SNPs" >&2

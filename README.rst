@@ -50,7 +50,7 @@ benchmark task with the wrapper script `benchmark.sh`_,
 
   This script is a wrapper for benchmarking cellsnp-lite
   
-  Usage: ./benchmark.sh <mode> <actiion>
+  Usage: ./benchmark.sh <mode> <action>
   
   <mode> is the target mode for benchmarking, could be one of:
     1a-demuxlet      Demuxlet dataset with given SNPs

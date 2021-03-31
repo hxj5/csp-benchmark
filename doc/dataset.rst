@@ -16,7 +16,7 @@ Preparation
 
 The demuxlet dataset is a 10x scRNA-seq dataset which was published in 
 demuxlet (`Kang et al`_., 2018). The GEO access number is GSE96583. For this
-benchmarking, it's the batch 1 sample B (GSM2560246) that was used and downloaded.
+benchmarking, it's the batch 1 sample B (GSM2560246) that was downloaded and used.
 
 BAM file
 ++++++++
