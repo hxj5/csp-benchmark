@@ -38,8 +38,8 @@ out_dir=$RES_DIR/$run/run
 if [ ! -d "$out_dir" ]; then mkdir -p $out_dir; fi
 echo "[I::$prog] Benchmark $run and output to '$out_dir' ..."
 
-bam_lst=$DATA_DIR/cardelino/bam.lst
-sample_lst=$DATA_DIR/cardelino/sample.lst
+bam_lst=$DATA_DIR/cardelino/carde.bam.lst
+sample_lst=$DATA_DIR/cardelino/carde.sample.lst
 snp=$DATA_DIR/snp/genome1K.phase3.SNP_AF5e2.chr1toX.hg19.snp.uniq.vcf.gz
 fasta=$DATA_DIR/fasta/cellranger.hg19.3.0.0.fa
 cell_tag=None
