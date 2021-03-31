@@ -1,8 +1,8 @@
 #!/bin/bash
 #Aim: to compare benchmark results of mode1a (droplet-based dataset with 
-#  given SNPs) on souporcell dataset:
+#  given SNPs) on demuxlet dataset:
 #  - plot efficiency in terms of time and memory usage for 
-#    cellSNP, cellsnp-lite and vartrix
+#    cellSNP, cellsnp-lite (-R/-T) and vartrix
 
 set -e
 set -o pipefail
@@ -16,7 +16,7 @@ fi
 
 set -u
 
-run=1a_souporcell
+run=1a_demuxlet
 util_dir=$work_dir/../utils
 out_dir=$RES_DIR/$run/efficiency
 if [ ! -d "$out_dir" ]; then mkdir -p $out_dir; fi

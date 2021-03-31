@@ -1,7 +1,6 @@
 #!/bin/bash
 #Aim: to benchmark mode1a (droplet-based dataset with given SNPs)
-#  on demuxlet dataset using 3 tools: cellSNP, cellsnp-lite (-R/-T)
-#  and vartrix
+#  on demuxlet dataset using 3 tools: cellSNP, cellsnp-lite and vartrix
 #Dependency: /usr/bin/time
 
 set -e
@@ -10,8 +9,7 @@ set -o pipefail
 if [ $# -lt 2 ]; then
   echo "" >&2
   echo "This script is aimed to benchmark mode1a (droplet-based dataset with given" >&2
-  echo "SNPs) on demuxlet dataset using 3 tools: cellSNP, cellsnp-lite (-R/-T)" >&2
-  echo "and vartrix." >&2
+  echo "SNPs) on demuxlet dataset using 3 tools: cellSNP, cellsnp-lite and vartrix." >&2
   echo "" >&2
   echo "Usage: $0 <repeat id> <ncore>" >&2
   echo "" >&2
@@ -72,30 +70,28 @@ echo "[I::$prog] cellSNP (repeat=$i; ncores=$n) to '$res_dir' ..."
 > $res_dir/run.out 2> $res_dir/run.err
 sleep 5
 
-# run cellsnp-lite with -R or -T
-for opt in -R -T; do
-  res_dir=$out_dir/cellsnp-lite${opt}_${i}_$n
-  if [ ! -d "$res_dir" ]; then mkdir -p $res_dir; fi
-  echo "[I::$prog] cellsnp-lite$opt (repeat=$i; ncores=$n) to '$res_dir' ..."
-  /usr/bin/time -v $BIN_DIR/python $util_dir/memusg -t -H \
-    $BIN_DIR/cellsnp-lite         \
-      -s $bam                     \
-      -b $barcode                \
-      $opt $snp                   \
-      -O $res_dir                \
-      -p $n                      \
-      --cellTAG $cell_tag       \
-      --UMItag $umi_tag          \
-      --minCOUNT $min_count        \
-      --minMAF $min_maf         \
-      --minLEN $min_len          \
-      --minMAPQ $min_mapq        \
-      --exclFLAG 772             \
-      --inclFLAG 0               \
-      --gzip                    \
-  > $res_dir/run.out 2> $res_dir/run.err
-  sleep 5
-done
+# run cellsnp-lite
+res_dir=$out_dir/cellsnp-lite_${i}_$n
+if [ ! -d "$res_dir" ]; then mkdir -p $res_dir; fi
+echo "[I::$prog] cellsnp-lite (repeat=$i; ncores=$n) to '$res_dir' ..."
+/usr/bin/time -v $BIN_DIR/python $util_dir/memusg -t -H \
+  $BIN_DIR/cellsnp-lite         \
+    -s $bam                     \
+    -b $barcode                \
+    -R $snp                    \
+    -O $res_dir                \
+    -p $n                      \
+    --cellTAG $cell_tag       \
+    --UMItag $umi_tag          \
+    --minCOUNT $min_count        \
+    --minMAF $min_maf         \
+    --minLEN $min_len          \
+    --minMAPQ $min_mapq        \
+    --exclFLAG 772             \
+    --inclFLAG 0               \
+    --gzip                    \
+> $res_dir/run.out 2> $res_dir/run.err
+sleep 5
 
 # run vartrix
 res_dir=$out_dir/vartrix_${i}_$n

@@ -2,7 +2,7 @@
 #Aim: to compare benchmark results of mode1a (droplet-based dataset with 
 #  given SNPs) on demuxlet dataset:
 #  - plot efficiency in terms of time and memory usage for 
-#    cellSNP, cellsnp-lite (-R/-T) and vartrix
+#    cellSNP, cellsnp-lite and vartrix
 
 set -e
 set -o pipefail
