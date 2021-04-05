@@ -52,7 +52,7 @@ if [ "$action" == "run" ]; then
     1a-demuxlet) rep=`seq 1 $NREP`; ncores="8 16 32";;
     1a-souporcell) rep=`seq 1 $NREP`; ncores="8 16 32";;
     1b-cardelino) rep=`seq 1 $NREP`; ncores="1 2 4 8";;
-    2a-souporcell) rep="1"; ncores="16";;
+    2a-souporcell) rep=`seq 1 $NREP`; ncores="16";;
     2b-cardelino) rep=`seq 1 $NREP`; ncores="1 2 4 8";;
     2b-souporcell) rep=`seq 1 $NREP`; ncores="8 16 32";;
     *) echo "[E::$prog] error <mode> '$mode'" >&2; exit 1;;

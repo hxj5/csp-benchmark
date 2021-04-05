@@ -25,8 +25,14 @@ echo "[I::$prog] Analysis results of run '$run' and output to '$out_dir' ..."
 set -x
 
 # extract and merge efficiency files
+# Note that for 2b-1a, the RSS from memusg in run.err was
+# incorrect, so use RSS from /usr/bin/time in run.err instead.
+# (actually for 2b-1a, the RSS from memusg in 2b.err was right
+# and almost the same with RSS from /usr/bin/time in either
+# run.err or 2b.err. For convenience, using RSS from 
+# /usr/bin/time in run.err is ok)
 perf=$out_dir/${run}.efficiency.tsv
-$util_dir/efficiency_merge.sh $RES_DIR/$run/run $perf
+$util_dir/efficiency_merge.sh $RES_DIR/$run/run $perf /usr/bin/time
 
 # plot efficiency for all tools
 $BIN_DIR/Rscript $util_dir/plot_efficiency.r \
@@ -49,7 +55,7 @@ function stat_usage() {
   local perf=$res_dir/${mode}.efficiency.tsv
   $util_dir/efficiency_merge.sh \
     $RES_DIR/$run/run  $perf    \
-    ${mode}.err  ^2b-1a
+    memusg  ${mode}.err  ^2b-1a
   echo "[I::$prog] efficiency statistics for '$mode' '$perf' in the order of \
                    cpu_time_mean/wall_time_mean/memory_mean is"
   cat $perf | awk '{

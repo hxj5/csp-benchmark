@@ -10,12 +10,14 @@ if [ $# -lt 2 ]; then
   echo "This script is aimed to extract efficiency data (time and memory" >&2
   echo "usage) from the log file of each run and then merge." >&2
   echo "" >&2
-  echo "Usage: $0 <run dir> <efficiency file> [log filename] [dir pattern]" >&2
+  echo "Usage: $0 <run dir> <efficiency file> [rss] [log filename] [dir pattern]" >&2
   echo "" >&2
   echo "<run dir> is the root dir containing several subdirs which are" >&2
   echo "  result dir of each tool_repeat_ncore, eg., cellsnp-lite_1_8" >&2
   echo "<efficiency file> is the output file, which would have" >&2
   echo "  6 columns: <app> <ncore> <repeat> <cpu_time> <wall_time> <memory>" >&2
+  echo "[rss] which rss value to use. memusg, use rss of memusg; /usr/bin/time," >&2
+  echo "  use rss of /usr/bin/time. default: memusg" >&2
   echo "[log filename] filename of log files containing time and memory" >&2
   echo "  usage info. default: run.err" >&2
   echo "[dir pattern] pattern used by grep to select target dirs. eg.," >&2
@@ -25,8 +27,10 @@ if [ $# -lt 2 ]; then
 fi
 dir0=$1
 perf=$2
-log_fn=$3
-dir_pattern=$4
+log_fn=$4
+dir_pattern=$5
+rss=rss1
+if [ "$3" == /usr/bin/time ]; then rss=rss2; fi
 if [ -z "$log_fn" ]; then log_fn=run.err; fi
 
 set -u
@@ -62,7 +66,7 @@ for dir in $dir_lst; do
   sys_time=`cat $log | tail -n $nline | \
              grep -E 'System time \(seconds\): [0-9.]+$' | awk '{print $NF}'`
 
-  echo -e "$app\t$ncore\t$repeat\t$user_time\t$wall_time1\t$rss1" >> $perf
+  echo -e "$app\t$ncore\t$repeat\t$user_time\t$wall_time1\t${!rss}" >> $perf
   echo -e "$app\t$ncore\t$repeat\t$wall_time1\t$rss1\t$wall_time2\t$rss2\t$user_time\t$sys_time" >> $perf_all
   
 done
