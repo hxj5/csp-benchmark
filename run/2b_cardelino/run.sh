@@ -1,7 +1,7 @@
 #!/bin/bash
 #Aim: to benchmark mode2b (well-based dataset without given SNPs)
-#  on cardelino dataset using 4 tools: bcftools-2b, cellSNP-2b, 
-#  cellsnp-lite-2b and cellsnp-lite-1b
+#  on cardelino dataset using 3 tools: bcftools, cellsnp-lite-2b 
+#  and cellsnp-lite-1b. CellSNP doesnot support multiple bams for mode 2b.
 #Dependency: /usr/bin/time
 
 set -e
@@ -10,8 +10,8 @@ set -o pipefail
 if [ $# -lt 2 ]; then
   echo "" >&2
   echo "This script is aimed to benchmark mode2b (well-based dataset without" >&2
-  echo "given SNPs) on cardelino dataset using 4 tools: bcftools-2b," >&2
-  echo "cellSNP-2b, cellsnp-lite-2b and cellsnp-lite-1b." >&2
+  echo "given SNPs) on cardelino dataset using 3 tools: bcftools, cellsnp-lite-2b" >&2
+  echo "and cellsnp-lite-1b. CellSNP doesnot support multiple bams for mode 2b." >&2
   echo "" >&2
   echo "Usage: $0 <repeat id> <ncore>" >&2
   echo "" >&2
@@ -87,28 +87,6 @@ echo ""                                 >> $script
 chmod u+x $script
 /usr/bin/time -v $BIN_DIR/python $util_dir/memusg -t -H \
   $script  \
-> $res_dir/run.out 2> $res_dir/run.err
-sleep 5
-
-# run cellSNP
-res_dir=$out_dir/cellSNP-2b_${i}_$n
-if [ ! -d "$res_dir" ]; then mkdir -p $res_dir; fi
-echo "[I::$prog] cellSNP-2b (repeat=$i; ncores=$n) to '$res_dir' ..."
-samples=`cat $sample_lst | tr '\n' ',' | sed 's/,$//'`
-/usr/bin/time -v $BIN_DIR/python $util_dir/memusg -t -H \
-  $BIN_DIR/cellSNP             \
-    -S $bam_lst                \
-    -I $samples                \
-    -O $res_dir                \
-    --chrom $chroms            \
-    -p $n                      \
-    --cellTAG $cell_tag       \
-    --UMItag $umi_tag          \
-    --minCOUNT $min_count        \
-    --minMAF $min_maf         \
-    --minLEN $min_len          \
-    --minMAPQ $min_mapq        \
-    --maxFLAG 255            \
 > $res_dir/run.out 2> $res_dir/run.err
 sleep 5
 

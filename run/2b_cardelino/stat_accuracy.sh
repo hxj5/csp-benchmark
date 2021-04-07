@@ -20,7 +20,6 @@ run=2b_cardelino
 bcf2b_dir=$RES_DIR/$run/run/bcftools-2b_1_8
 csp1b_dir=$RES_DIR/$run/run/cellsnp-lite-1b_1_8
 csp2b_dir=$RES_DIR/$run/run/cellsnp-lite-2b_1_8
-pycsp2b_dir=$RES_DIR/$run/run/cellSNP-2b_1_8
 snp=$DATA_DIR/snp/genome1K.phase3.SNP_AF5e2.chr1toX.hg19.snp.uniq.vcf.gz
 util_dir=$work_dir/../utils
 out_dir=$RES_DIR/$run/accuracy
@@ -32,7 +31,6 @@ set -x
 # check if results of different runs for each tool are the same
 # (should be the same)
 $util_dir/diff_runs.sh bcftools-2b $RES_DIR/$run/run
-$util_dir/diff_runs.sh cellSNP-2b $RES_DIR/$run/run
 $util_dir/diff_runs.sh cellsnp-lite-1b $RES_DIR/$run/run
 $util_dir/diff_runs.sh cellsnp-lite-2b $RES_DIR/$run/run
 

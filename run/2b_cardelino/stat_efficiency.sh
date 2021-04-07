@@ -2,7 +2,7 @@
 #Aim: to compare benchmark results of mode2b (well-based dataset without
 #  given SNPs) on cardelino dataset:
 #  - plot efficiency in terms of time and memory usage for 
-#    bcftools-2b, cellSNP-2b, cellsnp-lite-2b and cellsnp-lite-1b
+#    bcftools-2b, cellsnp-lite-2b and cellsnp-lite-1b
 
 set -e
 set -o pipefail
