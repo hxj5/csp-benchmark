@@ -42,13 +42,21 @@ set -eux
   4 \
   3.1
 
-# 2b_souporcell.3tools.PRC.tiff was initially named 
 python ../../../run/2b_souporcell/stat_accuracy_PRCurve.py \
   --name1 cellsnp-lite \
   --infile1 cellsnp-lite.array.freebayes.precision.recall.tsv \
   --name2 freebayes \
   --infile2 freebayes.array.cellsnp-lite.precision.recall.tsv \
   --outfig 2b_souporcell.3tools.PRC.tiff \
+  --width 4.3   \
+  --height 3.1
+
+python ../../../run/2b_souporcell/stat_accuracy_PRCurve.py \
+  --name1 cellsnp-lite \
+  --infile1 cellsnp-lite.array.freebayes.precision.recall.het.tsv \
+  --name2 freebayes \
+  --infile2 freebayes.array.cellsnp-lite.precision.recall.het.tsv \
+  --outfig 2b_souporcell.3tools.het.PRC.tiff \
   --width 4.3   \
   --height 3.1
 

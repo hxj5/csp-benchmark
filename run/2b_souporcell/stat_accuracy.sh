@@ -90,5 +90,24 @@ $BIN_DIR/python $work_dir/stat_accuracy_PRCurve.py \
   --infile2 $fby_pr3       \
   --outfig $out_dir/array.cellsnp-lite.freebayes.precision.recall.tiff
 
+# plot Precision-Recall curve for TGT of Het SNPs shared by cellsnp-lite, 
+# freebayes and array (chrom+pos)
+csp_query3_het=$pre_dir/cellsnp-lite.array.freebayes.query.het.tsv
+fby_query3_het=$pre_dir/freebayes.array.cellsnp-lite.query.het.tsv
+cat $csp_query3 | awk 'NR == 1 || $9 == "0/1" || $9 == "1/0"' > $csp_query3_het
+cat $fby_query3 | awk 'NR == 1 || $9 == "0/1" || $9 == "1/0"' > $fby_query3_het
+
+csp_pr3_het=$out_dir/cellsnp-lite.array.freebayes.precision.recall.het.tsv
+fby_pr3_het=$out_dir/freebayes.array.cellsnp-lite.precision.recall.het.tsv
+query2pr $csp_query3_het $csp_pr3_het
+query2pr $fby_query3_het $fby_pr3_het
+
+$BIN_DIR/python $work_dir/stat_accuracy_PRCurve.py \
+  --name1 cellsnp-lite     \
+  --infile1 $csp_pr3_het       \
+  --name2 freebayes        \
+  --infile2 $fby_pr3_het       \
+  --outfig $out_dir/array.cellsnp-lite.freebayes.precision.recall.het.tiff
+
 echo "[I::$prog] Done!"
 
