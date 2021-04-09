@@ -30,12 +30,13 @@ p <- data %>%
   geom_line() +
   scale_color_manual(values = c("red", "blue")) +
   xlab("Correlation Threshold (>)") +
-  ylab("Ratio of SNPs above Threshold") +
+  ylab("Proportion of SNPs above Threshold") +
   labs(title = "Correlation between Cellsnp-lite and VarTrix") +
   labs(color = "Allele Depth") +
   scale_y_continuous(limits = c(0.95, 1), 
                      breaks = breaks,
-                     labels = labels)
+                     labels = labels) +
+  scale_color_manual(values = c("#ff7600", "#00824c"))
 
 p <- p +
   theme_bw() +
