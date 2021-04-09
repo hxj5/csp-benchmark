@@ -1,7 +1,7 @@
 #!/bin/bash
 #Aim: to benchmark mode2b (well-based dataset without given SNPs)
-#  on cardelino dataset using 3 tools: bcftools, cellsnp-lite-2b 
-#  and cellsnp-lite-1b. CellSNP doesnot support multiple bams for mode 2b.
+#  on cardelino dataset using 2 tools: bcftools, cellsnp-lite-2b.
+#  CellSNP doesnot support multiple bams for mode 2b.
 #Dependency: /usr/bin/time
 
 set -e
@@ -10,8 +10,8 @@ set -o pipefail
 if [ $# -lt 2 ]; then
   echo "" >&2
   echo "This script is aimed to benchmark mode2b (well-based dataset without" >&2
-  echo "given SNPs) on cardelino dataset using 3 tools: bcftools, cellsnp-lite-2b" >&2
-  echo "and cellsnp-lite-1b. CellSNP doesnot support multiple bams for mode 2b." >&2
+  echo "given SNPs) on cardelino dataset using 2 tools: bcftools, cellsnp-lite-2b." >&2
+  echo "CellSNP doesnot support multiple bams for mode 2b." >&2
   echo "" >&2
   echo "Usage: $0 <repeat id> <ncore>" >&2
   echo "" >&2
@@ -90,35 +90,31 @@ chmod u+x $script
 > $res_dir/run.out 2> $res_dir/run.err
 sleep 5
 
-# run cellsnp-lite mode 1b and mode 2b
-for mode in 1b 2b; do
-  region="-T $snp"
-  if [ $mode == "2b" ]; then
-    region="--chrom $chroms"
-  fi
-  res_dir=$out_dir/cellsnp-lite-${mode}_${i}_$n
-  if [ ! -d "$res_dir" ]; then mkdir -p $res_dir; fi
-  echo "[I::$prog] cellsnp-lite-$mode (repeat=$i; ncores=$n) to '$res_dir' ..."
-  /usr/bin/time -v $BIN_DIR/python $util_dir/memusg -t -H \
-    $BIN_DIR/cellsnp-lite         \
-      -S $bam_lst                 \
-      -i $sample_lst             \
-      -O $res_dir                \
-      $region                    \
-      -p $n                      \
-      --cellTAG $cell_tag       \
-      --UMItag $umi_tag          \
-      --minCOUNT $min_count        \
-      --minMAF $min_maf         \
-      --minLEN $min_len          \
-      --minMAPQ $min_mapq        \
-      --exclFLAG 1796            \
-      --inclFLAG 0               \
-      --gzip                    \
-      --genotype                \
-  > $res_dir/run.out 2> $res_dir/run.err
-  sleep 5
-done
+# run cellsnp-lite mode 2b
+mode=2b
+region="--chrom $chroms"
+res_dir=$out_dir/cellsnp-lite-${mode}_${i}_$n
+if [ ! -d "$res_dir" ]; then mkdir -p $res_dir; fi
+echo "[I::$prog] cellsnp-lite-$mode (repeat=$i; ncores=$n) to '$res_dir' ..."
+/usr/bin/time -v $BIN_DIR/python $util_dir/memusg -t -H \
+  $BIN_DIR/cellsnp-lite         \
+    -S $bam_lst                 \
+    -i $sample_lst             \
+    -O $res_dir                \
+    $region                    \
+    -p $n                      \
+    --cellTAG $cell_tag       \
+    --UMItag $umi_tag          \
+    --minCOUNT $min_count        \
+    --minMAF $min_maf         \
+    --minLEN $min_len          \
+    --minMAPQ $min_mapq        \
+    --exclFLAG 1796            \
+    --inclFLAG 0               \
+    --gzip                    \
+    --genotype                \
+> $res_dir/run.out 2> $res_dir/run.err
+sleep 5
 
 echo "[I::$prog] Done!"
 

@@ -18,7 +18,6 @@ set -u
 
 run=2b_cardelino
 bcf2b_dir=$RES_DIR/$run/run/bcftools-2b_1_8
-csp1b_dir=$RES_DIR/$run/run/cellsnp-lite-1b_1_8
 csp2b_dir=$RES_DIR/$run/run/cellsnp-lite-2b_1_8
 snp=$DATA_DIR/snp/genome1K.phase3.SNP_AF5e2.chr1toX.hg19.snp.uniq.vcf.gz
 util_dir=$work_dir/../utils
@@ -31,7 +30,6 @@ set -x
 # check if results of different runs for each tool are the same
 # (should be the same)
 $util_dir/diff_runs.sh bcftools-2b $RES_DIR/$run/run
-$util_dir/diff_runs.sh cellsnp-lite-1b $RES_DIR/$run/run
 $util_dir/diff_runs.sh cellsnp-lite-2b $RES_DIR/$run/run
 
 # extract allele depth of A,C,G,T from vcf
@@ -81,23 +79,6 @@ csp2b_depth=$out_dir/cellsnp-lite-2b.allele.depth.sort.tsv
 vcf2depth  cellsnp-lite  $csp2b_dir/cellSNP.cells.vcf.gz  $csp2b_depth
 
 diff_modes  bcftools-2b  $bcf2b_depth  cellsnp-lite-2b  $csp2b_depth
-
-# compare cellsnp-lite-2b and cellsnp-lite-1b
-## first intersect SNPs of cellsnp-lite-2b with input SNPs
-## used by cellsnp-lite-1b
-csp2b1b_vcf=$out_dir/cellsnp-lite-2b.1b.cells.vcf.gz
-$BIN_DIR/bcftools view -T $snp -Oz \
-  $csp2b_dir/cellSNP.cells.vcf.gz > $csp2b1b_vcf
-echo "[I::$prog] intersect SNPs of cellsnp-lite-2b with input SNPs used \
-                 by cellsnp-lite-1b and output to '$csp2b1b_vcf'"
-
-csp2b1b_depth=$out_dir/cellsnp-lite-2b.1b.allele.depth.sort.tsv
-vcf2depth  cellsnp-lite  $csp2b1b_vcf  $csp2b1b_depth
-
-csp1b_depth=$out_dir/cellsnp-lite-1b.allele.depth.sort.tsv
-vcf2depth  cellsnp-lite  $csp1b_dir/cellSNP.cells.vcf.gz  $csp1b_depth
-
-diff_modes  cellsnp-lite-1b  $csp1b_depth  cellsnp-lite-2b  $csp2b1b_depth
 
 echo "[I::$prog] Done!"
 

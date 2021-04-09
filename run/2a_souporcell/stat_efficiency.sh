@@ -2,7 +2,7 @@
 #Aim: to compare benchmark results of mode2a (droplet-based dataset without
 #  given SNPs) on souporcell dataset:
 #  - plot efficiency in terms of time and memory usage for 
-#     mode2a, mode2b + mode1a, common_SNP + mode1a
+#     mode2a, mode2b + mode1a
 
 set -e
 set -o pipefail

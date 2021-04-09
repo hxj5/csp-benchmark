@@ -1,6 +1,6 @@
 #!/bin/bash
-#Aim: to benchmark mode2a, mode2b + mode1a, and
-#  common_SNP + mode1a, on souporcell dataset
+#Aim: to benchmark mode2a and mode2b + mode1a
+#  on souporcell dataset
 #Dependency: /usr/bin/time
 
 set -e
@@ -8,8 +8,8 @@ set -o pipefail
 
 if [ $# -lt 2 ]; then
   echo "" >&2
-  echo "This script is aimed to benchmark mode2a, mode2b + mode1a, and" >&2
-  echo "common_SNP + mode1a, on souporcell dataset." >&2
+  echo "This script is aimed to benchmark mode2a and mode2b + mode1a on" >&2
+  echo "souporcell dataset." >&2
   echo "" >&2
   echo "Usage: $0 <repeat id> <ncore>" >&2
   echo "" >&2
@@ -130,28 +130,28 @@ chmod u+x $script
 > $res_dir/run.out 2> $res_dir/run.err
 sleep 5
 
-# run common_SNP + mode 1a
-res_dir=$out_dir/cSNP-1a_${i}_$n
-if [ ! -d "$res_dir" ]; then mkdir -p $res_dir; fi
-echo "[I::$prog] common-SNP + mode 1a (repeat=$i; ncores=$n) to '$res_dir' ..."
-/usr/bin/time -v $BIN_DIR/python $util_dir/memusg -t -H \
-  $BIN_DIR/cellsnp-lite         \
-    -s $bam                     \
-    -b $barcode                \
-    -R $snp                    \
-    -O $res_dir                \
-    -p $n                      \
-    --cellTAG CB               \
-    --UMItag UB                 \
-    --minCOUNT $min_count        \
-    --minMAF $min_maf         \
-    --minLEN $min_len          \
-    --minMAPQ $min_mapq        \
-    --exclFLAG 772             \
-    --inclFLAG 0               \
-    --gzip                    \
-    --genotype                \
-> $res_dir/run.out 2> $res_dir/run.err
+## run common_SNP + mode 1a
+#res_dir=$out_dir/cSNP-1a_${i}_$n
+#if [ ! -d "$res_dir" ]; then mkdir -p $res_dir; fi
+#echo "[I::$prog] common-SNP + mode 1a (repeat=$i; ncores=$n) to '$res_dir' ..."
+#/usr/bin/time -v $BIN_DIR/python $util_dir/memusg -t -H \
+#  $BIN_DIR/cellsnp-lite         \
+#    -s $bam                     \
+#    -b $barcode                \
+#    -R $snp                    \
+#    -O $res_dir                \
+#    -p $n                      \
+#    --cellTAG CB               \
+#    --UMItag UB                 \
+#    --minCOUNT $min_count        \
+#    --minMAF $min_maf         \
+#    --minLEN $min_len          \
+#    --minMAPQ $min_mapq        \
+#    --exclFLAG 772             \
+#    --inclFLAG 0               \
+#    --gzip                    \
+#    --genotype                \
+#> $res_dir/run.out 2> $res_dir/run.err
 
 echo "[I::$prog] Done!"
 
