@@ -75,8 +75,7 @@ def PR_plot(name, infile, outfig, title, color, width, height, dpi):
     plt.plot(recall, precision, "-", color = color, linewidth = 1.0,
             label = "%s: AUC=%.3f" % (name, auc))
     plt.plot(mrec, mpre, marker = "o", markersize = 3, color = color)
-    plt.plot(numpy.arange(0, 2), 1 - numpy.arange(0, 2), "k--", 
-            linewidth=1.0, label="random: AUC=0.500")
+    plt.ylim(bottom = 0.7)
     plt.legend(loc="best", fancybox=True, ncol=1)
     plt.xlabel("Recall")
     plt.ylabel("Precision")
@@ -111,8 +110,7 @@ def PR_plot2(name1, infile1, name2, infile2, outfig, title, width, height, dpi):
                 label = "%s: AUC=%.3f" % (name, auc))
         plt.plot(mrec, mpre, marker = "o", markersize = 3, color = color)
 
-    plt.plot(numpy.arange(0, 2), 1 - numpy.arange(0, 2), "k--", 
-            linewidth=1.0, label="random: AUC=0.500")
+    plt.ylim(bottom = 0.7)
     plt.legend(loc="best", fancybox=True, ncol=1)
     plt.xlabel("Recall")
     plt.ylabel("Precision")
