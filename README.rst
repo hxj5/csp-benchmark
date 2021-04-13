@@ -19,6 +19,10 @@ each mode.
    "Mode 2a", "To detect", "Pooled one", "Droplet", "N.A."
    "Mode 2b", "To detect", "Each per cell", "SMART-seq", "Freebayes"
 
+Note, there is an old version (v1) of benchmarking scripts in 
+`scripts/benchmark_v1`_, whose results were submitted to bioRxiv
+`preprint`_.
+
 How to use
 ----------
 
@@ -79,4 +83,5 @@ The benchmark results were initially described in the `preprint`_.
 .. _doc/software.rst: https://github.com/hxj5/csp-benchmark/blob/master/doc/software.rst
 .. _doc/dataset.rst: https://github.com/hxj5/csp-benchmark/blob/master/doc/dataset.rst
 .. _preprint: https://www.biorxiv.org/content/10.1101/2020.12.31.424913v1.full
+.. _scripts/benchmark_v1: https://github.com/hxj5/csp-benchmark/tree/master/scripts/benchmark_v1
 
