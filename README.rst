@@ -19,10 +19,6 @@ each mode.
    "Mode 2a", "To detect", "Pooled one", "Droplet", "N.A."
    "Mode 2b", "To detect", "Each per cell", "SMART-seq", "Freebayes"
 
-Note, there is an old version (v1) of benchmarking scripts in 
-`scripts/benchmark_v1`_, whose results were submitted to bioRxiv
-`preprint`_.
-
 How to use
 ----------
 
@@ -74,7 +70,9 @@ benchmark task with the wrapper script `benchmark.sh`_,
 Benchmark Results
 -----------------
 
-The benchmark results were initially described in the `preprint`_.
+The benchmark results were initially described in the `preprint`_ and the 
+corresponding version (an old version, v1) of benchmarking scripts are in 
+`scripts/benchmark_v1`_.
 
 .. _cellsnp-lite: https://github.com/single-cell-genetics/cellsnp-lite
 .. _run: https://github.com/hxj5/csp-benchmark/tree/master/run
