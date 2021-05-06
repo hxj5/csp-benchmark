@@ -1,6 +1,0 @@
-Mode	SNPs	Bam files	Platform	Alternative
-Mode 1a	Given	Pooled one	Droplet	VarTrix
-Mode 1b	Given	Each per cell	SMART-seq	BCFtools mpileup
-Mode 2a	To detect	Pooled one	Droplet	N.A.
-Mode 2b	To detect	Each per cell	SMART-seq	Freebayes
-

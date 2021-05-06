@@ -1,3 +1,0 @@
-app	ncores	wall_time mean (s)	wall_time stdev (s)	cpu_time mean (s)	cpu_time stdev (s)	peak_mem mean (kB)	peak_mem stdev (kB)
-2a	16	94816	2026	1145807	4726	29229047	138142
-2b-1a	16	2853	369	22888	2199	28287288	68754
