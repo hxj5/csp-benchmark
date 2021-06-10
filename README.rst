@@ -7,17 +7,9 @@ in C and performs per cell genotyping, supporting both with (mode 1) and
 without (mode 2) given SNPs. In the latter case, heterozygous SNPs will be 
 detected automatically. Cellsnp-lite is applicable for both droplet-based 
 (e.g., 10x Genomics data) and well-based platforms (e.g., SMART-seq2 data). 
-See Table 1 for summary of these four options, and example alternatives in 
-each mode.
 
-.. csv-table:: Table 1
-   :header: "Mode", "SNPs", "Bam files", "Platform", "Alternative"
-   :widths: 20, 20, 20, 20, 40
-
-   "Mode 1a", "Given", "Pooled one", "Droplet", "VarTrix"
-   "Mode 1b", "Given", "Each per cell", "SMART-seq", "BCFtools mpileup"
-   "Mode 2a", "To detect", "Pooled one", "Droplet", "N.A."
-   "Mode 2b", "To detect", "Each per cell", "SMART-seq", "Freebayes"
+See Table 1 of the `preprint`_ for summary of all four options, and 
+example alternatives in each mode.
 
 How to use
 ----------
@@ -70,9 +62,10 @@ benchmark task with the wrapper script `benchmark.sh`_,
 Benchmark Results
 -----------------
 
-The benchmark results were initially described in the `preprint`_ and the 
-corresponding version (an old version, v1) of benchmarking scripts are in 
-`scripts/benchmark_v1`_.
+The latest benchmarking results are now published in `Bioinformatics`_.
+
+(The benchmark results were initially described in the `preprint`_ and the 
+corresponding scripts are in `scripts/benchmark_v1`_.)
 
 .. _cellsnp-lite: https://github.com/single-cell-genetics/cellsnp-lite
 .. _run: https://github.com/hxj5/csp-benchmark/tree/master/run
@@ -80,6 +73,7 @@ corresponding version (an old version, v1) of benchmarking scripts are in
 .. _config.sh: https://github.com/hxj5/csp-benchmark/blob/master/config.sh
 .. _doc/software.rst: https://github.com/hxj5/csp-benchmark/blob/master/doc/software.rst
 .. _doc/dataset.rst: https://github.com/hxj5/csp-benchmark/blob/master/doc/dataset.rst
+.. _Bioinformatics: https://academic.oup.com/bioinformatics/advance-article-abstract/doi/10.1093/bioinformatics/btab358/6272512
 .. _preprint: https://www.biorxiv.org/content/10.1101/2020.12.31.424913v1.full
 .. _scripts/benchmark_v1: https://github.com/hxj5/csp-benchmark/tree/master/scripts/benchmark_v1
 
